@@ -7,7 +7,7 @@ import { PipelineOptions } from '../pipeline/pipeline.request.dto';
 export type GetInsightsConfig = {
     level: string;
     fields: string[];
-    breakdowns?: string;
+    breakdowns?: string[];
 };
 
 export const getInsightsStream = (config: GetInsightsConfig) => {
