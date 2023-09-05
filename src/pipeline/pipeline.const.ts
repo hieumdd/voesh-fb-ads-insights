@@ -43,6 +43,12 @@ export const ADS_INSIGHTS: Pipeline = {
             'inline_link_clicks',
             'reach',
             'spend',
+            'video_30_sec_watched_actions',
+            'video_p25_watched_actions',
+            'video_p50_watched_actions',
+            'video_p75_watched_actions',
+            'video_p95_watched_actions',
+            'video_play_actions',
         ],
     }),
     validationSchema: Joi.object({
@@ -68,6 +74,12 @@ export const ADS_INSIGHTS: Pipeline = {
         actions: actionBreakdownSchema,
         action_values: actionBreakdownSchema,
         cost_per_action_type: actionBreakdownSchema,
+        video_30_sec_watched_actions: actionBreakdownSchema,
+        video_p25_watched_actions: actionBreakdownSchema,
+        video_p50_watched_actions: actionBreakdownSchema,
+        video_p75_watched_actions: actionBreakdownSchema,
+        video_p95_watched_actions: actionBreakdownSchema,
+        video_play_actions: actionBreakdownSchema,
     }),
     loadConfig: {
         schema: [
@@ -80,6 +92,7 @@ export const ADS_INSIGHTS: Pipeline = {
             { name: 'adset_name', type: 'STRING' },
             { name: 'ad_id', type: 'NUMERIC' },
             { name: 'ad_name', type: 'STRING' },
+            { name: 'clicks', type: 'NUMERIC' },
             { name: 'cpc', type: 'NUMERIC' },
             { name: 'cpm', type: 'NUMERIC' },
             { name: 'ctr', type: 'NUMERIC' },
@@ -107,9 +120,62 @@ export const ADS_INSIGHTS: Pipeline = {
                     { name: 'value', type: 'NUMERIC' },
                 ],
             },
-            { name: 'clicks', type: 'NUMERIC' },
             {
                 name: 'cost_per_action_type',
+                type: 'RECORD',
+                mode: 'REPEATED',
+                fields: [
+                    { name: 'action_type', type: 'STRING' },
+                    { name: 'value', type: 'NUMERIC' },
+                ],
+            },
+            {
+                name: 'video_30_sec_watched_actions',
+                type: 'RECORD',
+                mode: 'REPEATED',
+                fields: [
+                    { name: 'action_type', type: 'STRING' },
+                    { name: 'value', type: 'NUMERIC' },
+                ],
+            },
+            {
+                name: 'video_p25_watched_actions',
+                type: 'RECORD',
+                mode: 'REPEATED',
+                fields: [
+                    { name: 'action_type', type: 'STRING' },
+                    { name: 'value', type: 'NUMERIC' },
+                ],
+            },
+            {
+                name: 'video_p50_watched_actions',
+                type: 'RECORD',
+                mode: 'REPEATED',
+                fields: [
+                    { name: 'action_type', type: 'STRING' },
+                    { name: 'value', type: 'NUMERIC' },
+                ],
+            },
+            {
+                name: 'video_p75_watched_actions',
+                type: 'RECORD',
+                mode: 'REPEATED',
+                fields: [
+                    { name: 'action_type', type: 'STRING' },
+                    { name: 'value', type: 'NUMERIC' },
+                ],
+            },
+            {
+                name: 'video_p95_watched_actions',
+                type: 'RECORD',
+                mode: 'REPEATED',
+                fields: [
+                    { name: 'action_type', type: 'STRING' },
+                    { name: 'value', type: 'NUMERIC' },
+                ],
+            },
+            {
+                name: 'video_play_actions',
                 type: 'RECORD',
                 mode: 'REPEATED',
                 fields: [
